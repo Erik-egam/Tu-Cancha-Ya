@@ -5,5 +5,4 @@ class Cancha(BaseModel):
     nombre: str
     precio_hora:str
     disponible:str
-    tipo_id:str
-
+    tipo_id:Optional[bool] = None

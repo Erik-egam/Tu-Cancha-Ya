@@ -1,40 +1,132 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/login_view.dart';
+import 'package:my_app/screens/cancha.dart'; // 👈 pantalla de detalle
 
-// ---------------------- INICIO (RESERVAS) ----------------------
 class ReservaCanchas extends StatelessWidget {
-
-  ReservaCanchas({super.key});
-  
-  final List<String> canchas = [
-    'Cancha 1 - Sintética',
-    'Cancha 2 - Fútbol 5',
-    'Cancha 3 - Fútbol 7',
-  ];
+  const ReservaCanchas({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Reservar Cancha")),
-      body: ListView.builder(
-        itemCount: canchas.length,
-        itemBuilder: (context, index) {
-          return Card(
-            color: Color(0xFF2C2C2C),
-            margin: EdgeInsets.all(10),
-            child: ListTile(
-              title: Text(canchas[index], style: TextStyle(color: Colors.white)),
-              subtitle: Text('Disponible', style: TextStyle(color: Colors.white70)),
-              trailing: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Reserva confirmada en ${canchas[index]}')),
-                  );
-                },
-                child: Text('Reservar'),
+      appBar: AppBar(
+        title: const Text("Reservar Cancha"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white),
+            tooltip: 'Cerrar sesión',
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            },
+          ),
+        ],
+      ),
+      backgroundColor: const Color(0xFF1E1E1E),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Cancha 1
+            Card(
+              color: const Color(0xFF2C2C2C),
+              margin: const EdgeInsets.all(10),
+              child: ListTile(
+                title: const Text(
+                  'Fútbol 5',
+                  style: TextStyle(color: Colors.white),
+                ),
+                subtitle: const Text(
+                  'Disponible',
+                  style: TextStyle(color: Colors.white70),
+                ),
+                trailing: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CanchaScreen(
+                          nombreCancha: 'Fútbol 5',
+                        ),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4CAF50),
+                    foregroundColor: Colors.black,
+                  ),
+                  child: const Text('Ver'),
+                ),
               ),
             ),
-          );
-        },
+
+            // Cancha 2
+            Card(
+              color: const Color(0xFF2C2C2C),
+              margin: const EdgeInsets.all(10),
+              child: ListTile(
+                title: const Text(
+                  'Fútbol 7',
+                  style: TextStyle(color: Colors.white),
+                ),
+                subtitle: const Text(
+                  'Disponible',
+                  style: TextStyle(color: Colors.white70),
+                ),
+                trailing: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CanchaScreen(
+                          nombreCancha: 'Fútbol 7',
+                        ),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4CAF50),
+                    foregroundColor: Colors.black,
+                  ),
+                  child: const Text('Ver'),
+                ),
+              ),
+            ),
+
+            // Cancha 3
+            Card(
+              color: const Color(0xFF2C2C2C),
+              margin: const EdgeInsets.all(10),
+              child: ListTile(
+                title: const Text(
+                  'Fútbol 11',
+                  style: TextStyle(color: Colors.white),
+                ),
+                subtitle: const Text(
+                  'Disponible',
+                  style: TextStyle(color: Colors.white70),
+                ),
+                trailing: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CanchaScreen(
+                          nombreCancha: 'Fútbol 11',
+                        ),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4CAF50),
+                    foregroundColor: Colors.black,
+                  ),
+                  child: const Text('Ver'),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

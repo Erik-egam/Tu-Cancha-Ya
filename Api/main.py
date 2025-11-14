@@ -19,9 +19,11 @@ app.add_middleware(
 
 # Importar los routers DESPUÉS de crear la conexión
 from routers import usuario
+from routers import cancha
 
 # Incluir el router de usuarios
 app.include_router(usuario.router, tags=["usuarios"])
+app.include_router(cancha.router, tags=["canchas"])
 
 # Ruta raíz opcional para probar conexión
 @app.get("/")

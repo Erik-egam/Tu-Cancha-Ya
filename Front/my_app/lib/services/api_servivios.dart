@@ -66,26 +66,40 @@ class ApiService {
     }
   }
 
-  Future<bool> login(
-      String email, String password) async {
-    try {
-      final response = await dio.post(
-        '/usuario/login',
-        data: {
-          'email': email,
-          'password': password,
-        },
-      );
-      print('Respuesta: ${response.data}');
+  Future<bool> login(String email, String password) async {
+  try {
+    final response = await dio.post(
+      '/usuario/login',
+      data: {
+        'email': email,
+        'password': password,
+      },
+    );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
+    print('📩 Respuesta login: ${response.data}');
+    print('📡 Código: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = response.data is Map ? response.data : Map<String, dynamic>.from(response.data);
+      if (data['Usuario'] != null) {
+        print('✅ Usuario logeado: ${data['Usuario']}');
         return true;
-      } else {
-        return false;
       }
-    } catch (e) {
-      print('Error al registrar usuario: $e');
-      return false;
     }
+
+    return false;
+  } on DioException catch (e) {
+    if (e.response != null) {
+      print('❌ Error del servidor: ${e.response?.data}');
+      print('⚙️ Código: ${e.response?.statusCode}');
+    } else {
+      print('⚠️ Error de conexión: ${e.message}');
+    }
+    return false;
+  } catch (e) {
+    print('🔥 Error inesperado: $e');
+    return false;
   }
 }
+}
+

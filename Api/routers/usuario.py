@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException,status
 from models.usuarios import Funciones_usuario
-from models.usuarios.Usuario import UsuarioDB
-from models.usuarios.Usuario import LoginData
+from models.usuarios.Usuario import UsuarioDB, LoginData
 
 
 
@@ -29,3 +28,4 @@ async def login(data: LoginData):
     return {
         "Usuario": f"{usuario['nombre_completo']}"
     }
+

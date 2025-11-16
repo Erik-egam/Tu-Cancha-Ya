@@ -6,9 +6,9 @@ from datetime import date,datetime
 class Reserva(BaseModel):
     usuario_id: int
     cancha_id:int
-    fecha:date
-    hora_inicio:datetime
-    hora_fin:datetime
-    estado:enumerate
-    valor_reserva: float
+    fecha:str
+    hora_inicio: str
+    hora_fin: str
+    estado: Optional[str] = None
+    valor_reserva: Optional[float] = None
   

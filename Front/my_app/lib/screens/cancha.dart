@@ -229,6 +229,7 @@ class _CanchaScreenState extends State<CanchaScreen> {
                             backgroundColor: Colors.green,
                           ),
                         );
+                      Navigator.pop(context); 
                       },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF4CAF50),

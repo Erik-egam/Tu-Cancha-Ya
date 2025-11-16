@@ -26,6 +26,7 @@ async def registrar_usuario(usuario:UsuarioDB):
 async def login(data: LoginData):
     usuario = await Funciones_usuario.login_usuario(data)
     return {
-        "Usuario": f"{usuario['nombre_completo']}"
+        "Usuario": f"{usuario['nombre_completo']}",
+        "Usuario_id": f"{usuario['id']}"
     }
 
